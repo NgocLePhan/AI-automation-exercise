@@ -4,6 +4,7 @@ import { SignupLoginPage } from '@pages/signup-login-page';
 import { AccountInformationPage } from '@pages/account-information-page';
 import { AccountCreatedPage } from '@pages/account-created-page';
 import { AccountDeletedPage } from '@pages/account-deleted-page';
+import { ContactUsPage } from '@pages/contact-us-page';
 import { blockAds } from '@utils/ad-blocker';
 
 /**
@@ -15,6 +16,7 @@ export interface PageFixtures {
   accountInformationPage: AccountInformationPage;
   accountCreatedPage: AccountCreatedPage;
   accountDeletedPage: AccountDeletedPage;
+  contactUsPage: ContactUsPage;
 }
 
 /**
@@ -48,6 +50,10 @@ export const test = baseTest.extend<PageFixtures>({
 
   accountDeletedPage: async ({ page }, use) => {
     await use(new AccountDeletedPage(page));
+  },
+
+  contactUsPage: async ({ page }, use) => {
+    await use(new ContactUsPage(page));
   },
 });
 

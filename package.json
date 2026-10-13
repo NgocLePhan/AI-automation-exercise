@@ -13,7 +13,8 @@
     "test:webkit": "playwright test --project=webkit",
     "test:smoke": "playwright test --grep \"@smoke\"",
     "test:regression": "playwright test --grep \"@regression\"",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "slice": "ts-node scripts/slice-context.ts"
   },
   "keywords": [
     "playwright",
@@ -31,6 +32,7 @@
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.4",
     "dotenv": "^16.4.7",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
 }

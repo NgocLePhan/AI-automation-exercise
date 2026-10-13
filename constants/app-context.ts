@@ -1,3 +1,5 @@
+import path from 'path';
+
 /**
  * Centralized Application Context Constants:
  * UI messages, page headings, error alerts, success notices, and page titles.
@@ -6,6 +8,7 @@
 
 export const PAGE_TITLES = {
   HOME: /Automation Exercise/i,
+  CONTACT_US: /Automation Exercise - Contact Us/i,
 } as const;
 
 export const AUTH_MESSAGES = {
@@ -20,6 +23,7 @@ export const PAGE_HEADINGS = {
   ACCOUNT_CREATED: 'Account Created!',
   ACCOUNT_DELETED: 'Account Deleted!',
   FEATURES_ITEMS: 'Features Items',
+  GET_IN_TOUCH: 'Get In Touch',
   SUBSCRIPTION: 'Subscription',
 } as const;
 
@@ -29,3 +33,8 @@ export const SUCCESS_MESSAGES = {
   ORDER_PLACED: 'Congratulations! Your order has been confirmed!',
   REVIEW_SUBMITTED: 'Thank you for your review.',
 } as const;
+
+export const TEST_DATA_FILES = {
+  SAMPLE_UPLOAD: path.resolve(__dirname, '../test-data/sample_upload.txt'),
+} as const;
+

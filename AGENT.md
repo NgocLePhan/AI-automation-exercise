@@ -27,16 +27,20 @@ To minimize token consumption and maximize LLM Prompt Caching, execute ALL devel
 
 > **Token Optimization Rule:** Keep context focused. Do NOT modify unrelated files in a single turn. Re-use existing file structures to leverage prompt caching.
 
-## 4. CIRCUIT BREAKER (FAIL-SAFE RULE)
-- **Maximum Retry Limit:** 3 Attempts.
-- If a test execution, bug fix, or selector resolution FAILS 3 consecutive times during implementation:
+## 4. CIRCUIT BREAKER & ANTI-LOOP (EXECUTION & RETRY LIMIT RULE)
+- **Execution & Retry Limit Rule**:
+  - When debugging or fixing a failed test, the agent is allowed a **maximum of 3 consecutive automated execution attempts** (e.g., running `npx playwright test` or node debugging scripts).
+  - If the test still fails after 3 attempts, the agent **MUST STOP immediately**, present the current error logs, explain the root cause hypothesis, and wait for human review instead of looping infinitely.
+  - This prevents wasted compute tokens and avoids runaway command loops.
+- **Structured Failure Report on Circuit Breaker Trigger**:
   1. STOP execution immediately.
   2. DO NOT retry a 4th time automatically.
   3. Output a structured failure summary:
-     - **Goal:** What were we trying to achieve?
-     - **Attempted Solutions:** What failed in the 3 tries?
-     - **Root Cause Hypothesis:** DOM change, timing issue, network error, etc.
-     - **Action Required:** Ask the user to step in and handle it manually.
+     - **Goal:** What was the target outcome?
+     - **Attempted Solutions & Executions:** Summary of the 3 execution attempts and what changes were tried.
+     - **Current Error Logs:** Exact terminal error / failure snippets from the latest attempt.
+     - **Root Cause Hypothesis:** Why it failed (DOM change, timing, environment, selector mismatch, etc.).
+     - **Action Required:** Pause and wait for human review/guidance before taking further actions.
 
 ## 5. TECHNICAL ARCHITECTURE & LOCATORS
 - **Target App:** https://automationexercise.com/

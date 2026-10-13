@@ -53,6 +53,13 @@ export abstract class BasePage {
   }
 
   /**
+   * Click on 'Contact Us' button in the navigation header
+   */
+  async clickContactUs(): Promise<void> {
+    await this.contactUsLink.click();
+  }
+
+  /**
    * Click on 'Signup / Login' button in the navigation header
    */
   async clickSignupLogin(): Promise<void> {
